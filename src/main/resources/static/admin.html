@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clima Laboral</title>
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/plugins/c3/c3.min.css" rel="stylesheet">
+    <link href="/static/css/custom.css" rel="stylesheet">
+    <link href="/static/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+    <link href="/static/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Login -->
+    <div id="login" style="display:none;">
+        <div class="middle-box text-center loginscreen animated fadeInDown">
+            <div>
+                <div>
+                    <h1 class="logo-name">CL</h1>
+                </div>
+                <div id="messages"></div>
+                <form class="m-t" role="form" id="loginForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required="">
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                </form>
+                <p class="m-t"> <small>Tecnosoftware &copy;</small> </p>
+            </div>
+        </div>
+    </div>
+    <!-- FIN Login -->
+
+    <!-- Panel de admin - Reportes -->
+    <div id="reportes" style="display:none;">
+        <div id="wrapper">
+
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav metismenu" id="side-menu">
+                        <li class="nav-header">
+                            <div class="profile-element titulo">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">CLIMA LABORAL</strong>
+                                    </span>
+                                    <a class="logout"><i class="fa fa-sign-out"></i> Logout</a>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="li-diario">
+                            <a href="#" class="boton-chart" data-rango="diario"><i class="fa fa-bar-chart"></i> <span class="nav-label">Diario</span></a>
+                        </li>
+                        <li class="li-semanal">
+                            <a href="#" class="boton-chart" data-rango="semanal"><i class="fa fa-bar-chart"></i> <span class="nav-label">Semanal</span> </a>
+                        </li>
+                        <li class="li-mensual">
+                            <a href="#" class="boton-chart" data-rango="mensual"><i class="fa fa-bar-chart"></i> <span class="nav-label">Mensual</span> </a>
+                        </li>
+                        <li class="li-anual">
+                            <a href="#" class="boton-chart" data-rango="anual"><i class="fa fa-bar-chart"></i> <span class="nav-label">Anual</span> </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="gray-bg">
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center m-t-lg">
+                                <h1>
+                                    Reportes del clima laboral
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-top-margin">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h5 id="title"></h5>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="form-group diario-group">
+                                        <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input id="diario" type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group semanal-group" style="display:none;">
+                                        <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input id="semanal" type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mensual-group" style="display:none;">
+                                        <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input id="mensual" type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group anual-group" style="display:none;">
+                                        <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input id="anual" type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <hr/>
+                                    <div class="row">
+                                        <div id="chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div>
+                        <strong>Copyright</strong> Tecnosoftware &copy;
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Fin Panel de admin - Reportes -->
+
+    <!-- Mainly scripts -->
+    <script src="/static/js/jquery-2.1.1.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/tecno/admin/jwt.js"></script>
+    <script src="/static/js/tecno/admin/AppChart.js"></script>
+    <script src="/static/js/tecno/admin.js"></script>
+    <script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/static/js/inspinia.js"></script>
+    <script src="/static/js/plugins/pace/pace.min.js"></script>
+    <script src="/static/js/plugins/d3/d3.min.js"></script>
+    <script src="/static/js/plugins/c3/c3.min.js"></script>
+    <script src="/static/js/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/static/js/plugins/fullcalendar/moment.min.js"></script>
+    <script src="/static/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="/static/js/plugins/datapicker/bootstrap-datetimepicker.min.js"></script>
+
+</body>
+
+</html>

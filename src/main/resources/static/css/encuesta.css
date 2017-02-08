@@ -1,0 +1,13 @@
+.btn-space{
+	margin: 0 20px;
+}
+
+.fa{
+	font-size: 30px;
+}
+
+.btn-circle.btn-lg{
+	width: 100px;
+    height: 100px;
+	border-radius: 100px;
+}
